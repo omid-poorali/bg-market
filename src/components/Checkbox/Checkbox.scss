@@ -1,0 +1,76 @@
+@import '../../styles/variables';
+
+.puiCheckbox {
+
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  &-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & input {
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      position: absolute;
+    }
+
+    &--primary {
+      border: 1px solid var(--neutral-500);
+      border-radius: $spacing-1;
+      width: 100%;
+
+      &:hover {
+        border-color: var(--primary-800);
+      }
+
+      &[focus="true"] {
+        border-color: var(--primary-800);
+      }
+    }
+
+    &--medium {
+      width: $spacing-5;
+      height: $spacing-5;
+    }
+  }
+
+  &-iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    border-radius: $spacing-1;
+
+    &--primary {
+      color: var(--neutral-50);
+      background-color: var(--primary-700);
+    }
+
+    &--disabled {
+      background-color: var(--neutral-300);
+    }
+
+  }
+
+  &-label {
+    display: inline-block;
+    margin: 0;
+
+    &--primary {
+      color: var(--neutral-500);
+    }
+
+    &--medium {
+      padding: 0px $spacing-2;
+      font-size: $text-sm;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { useControlled } from 'hooks';
 import { twMerge } from "tailwind-merge";
 
 
-type CustomPropsType = {
+type CustomProps = {
     className?: string;
     disabled?: boolean;
     options?: Array<Option>;
@@ -12,7 +12,7 @@ type CustomPropsType = {
     onChange?: (_event: { event: React.MouseEvent<HTMLButtonElement>, option: Option, value: Option["value"] }) => void;
 };
 
-type PropsType = CustomPropsType & Omit<React.ComponentPropsWithoutRef<'ul'>, keyof CustomPropsType>
+type PropsType = CustomProps & Omit<React.ComponentPropsWithoutRef<'ul'>, keyof CustomProps>
 
 export const TabMenu = React.forwardRef((props: PropsType, forwardedRef: React.Ref<HTMLUListElement>) => {
     const {
@@ -47,18 +47,23 @@ export const TabMenu = React.forwardRef((props: PropsType, forwardedRef: React.R
         }
     };
 
+    const classes = {
+        root: twMerge('flex flex-nowrap gap-2 overflow-x-scroll no-scrollbar', className),
+        button: "border border-black dark:border-white rounded-full py-2 px-5 text-sm",
+        activeButton: "bg-primary text-white dark:bg-white dark:text-[#020913]"
+    }
+
     return (
         <ul
             ref={forwardedRef}
-            className={twMerge('flex flex-nowrap gap-2 overflow-x-scroll no-scrollbar', className)}
+            className={classes.root}
             {...rest}>
             {React.Children.toArray(options.map((option, index) => {
                 const active = selectedOptionIndex === index;
                 return (
                     <li>
                         <button
-                            className={twMerge("border border-black dark:border-white rounded-full py-2 px-5 text-sm",
-                                active && "bg-primary text-white dark:bg-white dark:text-[#020913] ")}
+                            className={twMerge(classes.button, active && classes.activeButton)}
                             type="button"
                             onClick={event => handleTabItemClick(event, option)}>
                             {option.label}

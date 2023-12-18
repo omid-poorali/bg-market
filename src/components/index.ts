@@ -6,3 +6,4 @@ export * from './Button';
 export * from './Pagination';
 export * from './TabMenu';
 export * from './SearchField';
+export * from './Checkbox';

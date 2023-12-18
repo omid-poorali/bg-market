@@ -11,7 +11,6 @@ type Variant =
   | "dark";
 
 type Elevated = boolean;
-type Size = "sm" | "lg";
 type Rounded = boolean;
 
 type ButtonProps<C extends React.ElementType> = PolymorphicComponentPropWithRef<
@@ -20,7 +19,6 @@ type ButtonProps<C extends React.ElementType> = PolymorphicComponentPropWithRef<
     as?: C extends string ? "button" | "a" : C;
     variant?: Variant;
     elevated?: Elevated;
-    size?: Size;
     rounded?: Rounded;
   }
 >;
@@ -36,9 +34,8 @@ function ButtonComponent<C extends React.ElementType>({
   elevated,
   rounded,
   children,
-  ref,
   ...props
-}: ButtonProps<C>) {
+}: ButtonProps<C>, ref?: PolymorphicRef<C>) {
   const Component = as || "button";
 
   // General Styles

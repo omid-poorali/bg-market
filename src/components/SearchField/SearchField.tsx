@@ -20,14 +20,17 @@ export const SearchField = React.forwardRef((props: PropsType, forwardedRef: Rea
 		...rest
 	} = props;
 
+	const classes = {
+		root: twMerge("flex items-center p-3 gap-2 border rounded-xl border-primary dark:border-white mx-auto",
+			fullWidth && "w-full", className),
+		input: "w-full bg-transparent border-none focus:outline-none dark:placeholder:text-[#ffffff4d]"
+	};
 
 	return (
-		<div data-testid="root" style={style} className={twMerge(
-			"flex items-center p-3 gap-2 border rounded-xl border-primary dark:border-white mx-auto",
-			fullWidth && "w-full", className)}>
+		<div data-testid="root" style={style} className={classes.root}>
 			<span>{startAdornment ?? <SearchIcon />}</span>
 			<input
-				className="w-full bg-transparent border-none focus:outline-none dark:placeholder:text-[#ffffff4d]"
+				className={classes.input}
 				ref={forwardedRef}
 				placeholder={placeholder}
 				{...rest}

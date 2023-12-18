@@ -16,10 +16,11 @@ type PropsType = {
     children: React.ReactNode;
 };
 
-export function AppProvider({ children }: PropsType) {
+export function StoreProvider({ children }: PropsType) {
 
+    const savedDarkMode = localStorage.getItem("darkMode");
     const [state, setState] = React.useState<Store>({
-        darkMode: localStorage.getItem("darkMode") === "true",
+        darkMode: savedDarkMode ? localStorage.getItem("darkMode") === "true" : true,
         coins: [],
     });
 
@@ -64,7 +65,7 @@ export function AppProvider({ children }: PropsType) {
 export const useStore = () => {
     const context = React.useContext(appContext);
     if (context === undefined) {
-        throw new Error('useStore must be used within a AppProvider');
+        throw new Error('useStore must be used within a StoreProvider');
     }
     return context;
 };

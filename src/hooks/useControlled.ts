@@ -16,7 +16,7 @@ export const useControlled = <T = unknown>({
   default: defaultValueProp,
 }: UseControlledProps<T>): [T, (newValue: T) => void] => {
   const isControlled = controlled !== undefined;
-  const isDevMode = useRef(import.meta.env.VITE_USER_NODE_ENV !== 'production');
+  const isDevMode = useRef(process.env.NODE_ENV !== 'production');
   const isControlledRef = useRef(isControlled);
   const defaultValueRef = useRef(defaultValueProp);
 

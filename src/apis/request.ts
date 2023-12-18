@@ -10,7 +10,7 @@ export type APIRequest = {
 function request(): APIRequest {
 
   const service = axios.create({});
-  service.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+  service.defaults.baseURL = process.env.BASE_URL;
   service.defaults.headers.common['Content-Type'] = 'application/json';
 
   return {

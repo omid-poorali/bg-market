@@ -2,7 +2,7 @@ import * as real from './real';
 import * as mock from './mock';
 
 const getApis = () => {
-  if (import.meta.env.VITE_USER_NODE_ENV === 'test') {
+  if (process.env.NODE_ENV === 'test') {
     return mock;
   }
   return real;

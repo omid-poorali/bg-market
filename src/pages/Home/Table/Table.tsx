@@ -2,6 +2,7 @@ import React from 'react';
 import { Store } from 'application';
 import { Icon, Table } from "components";
 import clsx from "clsx";
+import * as Utils from "utils";
 
 const classes = {
     table: "border-collapse",
@@ -62,18 +63,18 @@ export const HomeTable = (props: PropsType) => {
                             </div>
                         </Table.Td>
                         <Table.Td className={classes.td}>
-                            {coin.last}
+                            {Utils.Number.format(coin.last, "$0.00a")}
                         </Table.Td>
                         <Table.Td className={clsx(classes.td, `${coin.percentage}`.includes("-") ? "text-danger" : "text-success")}>
-                            {coin.percentage}
+                            {Utils.Number.format(coin.percentage, "0.00")}
                         </Table.Td>
                         <Table.Td className={clsx(classes.th, "hidden lg:table-cell")}>
                         </Table.Td>
                         <Table.Td className={clsx(classes.th, "hidden md:table-cell")}>
-                            {coin.baseVolume}
+                            {Utils.Number.format(coin.baseVolume, "0.00a")}
                         </Table.Td>
                         <Table.Td className={clsx(classes.th, "hidden md:table-cell")}>
-                            {coin.quoteVolume}
+                            {Utils.Number.format(coin.quoteVolume, "0.00a")}
                         </Table.Td>
                         <Table.Td className={clsx(classes.td, "hidden md:table-cell text-success cursor-pointer")}>
                             Trade

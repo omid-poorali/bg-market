@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search as SearchIcon } from 'lucide-react';
-import clsx from 'clsx';
+import { twMerge } from "tailwind-merge";
+
 
 type CustomProps = {
 	fullWidth?: boolean;
@@ -21,8 +22,9 @@ export const SearchField = React.forwardRef((props: PropsType, forwardedRef: Rea
 
 
 	return (
-		<div data-testid="root" style={style} className={clsx("flex items-center p-3 gap-2 border rounded-xl border-primary dark:border-white mx-auto",
-			{ "w-full": fullWidth }, className)}>
+		<div data-testid="root" style={style} className={twMerge(
+			"flex items-center p-3 gap-2 border rounded-xl border-primary dark:border-white mx-auto",
+			fullWidth && "w-full", className)}>
 			<span>{startAdornment ?? <SearchIcon />}</span>
 			<input
 				className="w-full bg-transparent border-none focus:outline-none dark:placeholder:text-[#ffffff4d]"

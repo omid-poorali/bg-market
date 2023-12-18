@@ -1,8 +1,8 @@
 import React from 'react';
 import { usePagination, DOTS } from 'hooks';
 import { Button, Icon } from 'components';
-import { twMerge } from 'tailwind-merge';
-import clsx from 'clsx';
+import { twMerge } from "tailwind-merge";
+
 
 type CustomProps = {
   onPageChange?: (target: number) => void;
@@ -54,25 +54,32 @@ export const Pagination = React.forwardRef((props: PropsType, forwardedRef: Reac
       onPageChange?.(currentPage - 1);
   };
 
+  const classes = {
+    root: twMerge('flex justify-center items-center sm:w-auto sm:mr-auto gap-1', className),
+    li: "flex-1 sm:flex-initial",
+    button: "min-w-0 sm:min-w-[40px] shadow-none font-normal flex items-center justify-center border-transparent text-slate-800 sm:mr-2 dark:text-slate-300 px-1 sm:px-3",
+    activeButton: "font-medium dark:bg-darkmode-400",
+    icon: "w-4 h-4"
+  }
+
   return (
     <ul
       ref={forwardedRef}
-      className={clsx('flex justify-center items-center sm:w-auto sm:mr-auto gap-1', className)}
+      className={classes.root}
       {...rest}
     >
 
 
-      <li className="flex-1 sm:flex-initial">
+      <li className={classes.li}>
         <Button
           onClick={onPrevious}
           as="div"
           className={twMerge([
-            "min-w-0 sm:min-w-[40px] shadow-none font-normal flex items-center justify-center border-transparent text-slate-800 sm:mr-2 dark:text-slate-300 px-1 sm:px-3",
-            isPrevBtnActive && " font-medium dark:bg-darkmode-400",
-            className,
+            classes.button,
+            isPrevBtnActive && classes.activeButton
           ])}
         >
-          <Icon icon="ChevronLeft" className="w-4 h-4" />
+          <Icon icon="ChevronLeft" className={classes.icon} />
         </Button>
       </li>
 
@@ -83,15 +90,14 @@ export const Pagination = React.forwardRef((props: PropsType, forwardedRef: Reac
         const isBtnActive = pageNumber === currentPage;
 
         return (
-          <li className="flex-1 sm:flex-initial">
+          <li className={classes.li}>
             <Button
-              //@ts-expect-error because
+              //@ts-expect-error it will return another item (above) that is not clickable if pageNumber was DOTS
               onClick={() => onPageChange?.(pageNumber)}
               as="div"
               className={twMerge([
-                "min-w-0 sm:min-w-[40px] shadow-none font-normal flex items-center justify-center border-transparent text-slate-800 sm:mr-2 dark:text-slate-300 px-1 sm:px-3",
-                isBtnActive && " font-medium dark:bg-darkmode-400",
-                className,
+                classes.button,
+                isBtnActive && classes.activeButton
               ])}
             >
               {pageNumber}
@@ -100,17 +106,16 @@ export const Pagination = React.forwardRef((props: PropsType, forwardedRef: Reac
         );
       }))}
 
-      <li className="flex-1 sm:flex-initial">
+      <li className={classes.li}>
         <Button
           onClick={onNext}
           as="div"
           className={twMerge([
-            "min-w-0 sm:min-w-[40px] shadow-none font-normal flex items-center justify-center border-transparent text-slate-800 sm:mr-2 dark:text-slate-300 px-1 sm:px-3",
-            isNextBtnActive && " font-medium dark:bg-darkmode-400",
-            className,
+            classes.button,
+            isNextBtnActive && classes.activeButton
           ])}
         >
-          <Icon icon="ChevronRight" className="w-4 h-4" />
+          <Icon icon="ChevronRight" className={classes.icon} />
         </Button>
       </li>
     </ul>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useStore } from "application";
 import { useDebounce } from "hooks";
@@ -26,6 +26,11 @@ export function Home() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    setCurrentPage(() => 1);
+  }, [debouncedQuery])
+
+
   const store = useStore();
 
   const filteredData = useMemo(() => (debouncedQuery ? store.coins.filter(([, coin]) => coin.symbol.toLowerCase().indexOf(debouncedQuery.toLowerCase()) > -1) : store.coins), [debouncedQuery, store.coins]);
@@ -40,7 +45,7 @@ export function Home() {
     <>
       <SearchField fullWidth className="mb-8" defaultValue={query} onChange={handleChange} />
       <div className="flex flex-col md:justify-between md:items-center md:flex-row">
-        <TabMenu defaultValue={0} options={tabs} />
+        <TabMenu value={0} options={tabs} />
         <div className="flex items-center gap-1 md:mt-0 mt-10">
           <div className="w-6 h-6 rounded-full border-primary dark:border-white border relative cursor-pointer" >
           </div><label className="m-0 font-normal text-base dark:text-[#ffffff33]">Available for Trading</label>

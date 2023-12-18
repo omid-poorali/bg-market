@@ -1,7 +1,7 @@
 import React from 'react';
 import { Store } from 'application';
 import { Icon, Table } from "components";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 import * as Utils from "utils";
 
 const classes = {
@@ -36,16 +36,16 @@ export const HomeTable = (props: PropsType) => {
                     <Table.Th className={classes.th}>
                         24h Change
                     </Table.Th>
-                    <Table.Th className={clsx(classes.th, "hidden lg:table-cell")}>
+                    <Table.Th className={twMerge(classes.th, "hidden lg:table-cell")}>
                         Market
                     </Table.Th>
-                    <Table.Th className={clsx(classes.th, "hidden md:table-cell")}>
+                    <Table.Th className={twMerge(classes.th, "hidden md:table-cell")}>
                         24h BaseVolume
                     </Table.Th>
-                    <Table.Th className={clsx(classes.th, "hidden md:table-cell")}>
+                    <Table.Th className={twMerge(classes.th, "hidden md:table-cell")}>
                         quoteVolume
                     </Table.Th>
-                    <Table.Th className={clsx(classes.th, "hidden md:table-cell")}>
+                    <Table.Th className={twMerge(classes.th, "hidden md:table-cell")}>
                         Actions
                     </Table.Th>
                 </Table.Tr>
@@ -65,18 +65,18 @@ export const HomeTable = (props: PropsType) => {
                         <Table.Td className={classes.td}>
                             {Utils.Number.format(coin.last, "$0.00a")}
                         </Table.Td>
-                        <Table.Td className={clsx(classes.td, `${coin.percentage}`.includes("-") ? "text-danger" : "text-success")}>
+                        <Table.Td className={twMerge(classes.td, `${coin.percentage}`.includes("-") ? "text-danger" : "text-success")}>
                             {Utils.Number.format(coin.percentage, "0.00")}
                         </Table.Td>
-                        <Table.Td className={clsx(classes.th, "hidden lg:table-cell")}>
+                        <Table.Td className={twMerge(classes.th, "hidden lg:table-cell")}>
                         </Table.Td>
-                        <Table.Td className={clsx(classes.th, "hidden md:table-cell")}>
+                        <Table.Td className={twMerge(classes.th, "hidden md:table-cell")}>
                             {Utils.Number.format(coin.baseVolume, "0.00a")}
                         </Table.Td>
-                        <Table.Td className={clsx(classes.th, "hidden md:table-cell")}>
+                        <Table.Td className={twMerge(classes.th, "hidden md:table-cell")}>
                             {Utils.Number.format(coin.quoteVolume, "0.00a")}
                         </Table.Td>
-                        <Table.Td className={clsx(classes.td, "hidden md:table-cell text-success cursor-pointer")}>
+                        <Table.Td className={twMerge(classes.td, "hidden md:table-cell text-success cursor-pointer")}>
                             Trade
                         </Table.Td>
                     </Table.Tr>

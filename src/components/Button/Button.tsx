@@ -1,28 +1,6 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-type PolymorphicRef<C extends React.ElementType> =
-  React.ComponentPropsWithRef<C>["ref"];
-
-type AsProp<C extends React.ElementType> = {
-  as?: C;
-};
-
-type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
-
-type PolymorphicComponentProp<C extends React.ElementType, Props = object> = Omit<
-  React.PropsWithChildren<AsProp<C>>,
-  keyof Props
-> &
-  Props &
-  Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
-
-type PolymorphicComponentPropWithRef<
-  C extends React.ElementType,
-  Props = object
-> = PolymorphicComponentProp<C, Props> & { ref?: PolymorphicRef<C> };
-
-
 type Variant =
   | "primary"
   | "secondary"
@@ -30,25 +8,7 @@ type Variant =
   | "warning"
   | "pending"
   | "danger"
-  | "dark"
-  | "outline-primary"
-  | "outline-secondary"
-  | "outline-success"
-  | "outline-warning"
-  | "outline-pending"
-  | "outline-danger"
-  | "outline-dark"
-  | "soft-primary"
-  | "soft-secondary"
-  | "soft-success"
-  | "soft-warning"
-  | "soft-pending"
-  | "soft-danger"
-  | "soft-dark"
-  | "facebook"
-  | "twitter"
-  | "instagram"
-  | "linkedin";
+  | "dark";
 
 type Elevated = boolean;
 type Size = "sm" | "lg";
@@ -128,99 +88,6 @@ function ButtonComponent<C extends React.ElementType>({
     "[&:hover:not(:disabled)]:dark:dark:bg-darkmode-800/70", // On hover and not disabled in dark mode
   ];
 
-  // Social Media
-  const facebook = [
-    "bg-[#3b5998] border-[#3b5998] text-white dark:border-[#3b5998]",
-  ];
-  const twitter = [
-    "bg-[#4ab3f4] border-[#4ab3f4] text-white dark:border-[#4ab3f4]",
-  ];
-  const instagram = [
-    "bg-[#517fa4] border-[#517fa4] text-white dark:border-[#517fa4]",
-  ];
-  const linkedin = [
-    "bg-[#0077b5] border-[#0077b5] text-white dark:border-[#0077b5]",
-  ];
-
-  // Outline
-  const outlinePrimary = [
-    "border-primary text-primary", // Default
-    "dark:border-primary", // Dark mode
-    "[&:hover:not(:disabled)]:bg-primary/10", // On hover and not disabled
-  ];
-  const outlineSecondary = [
-    "border-secondary text-slate-500", // Default
-    "dark:border-darkmode-100/40 dark:text-slate-300", // Dark mode
-    "[&:hover:not(:disabled)]:bg-secondary/20", // On hover and not disabled
-    "[&:hover:not(:disabled)]:dark:bg-darkmode-100/10", // On hover and not disabled in dark mode
-  ];
-  const outlineSuccess = [
-    "border-success text-success", // Default
-    "dark:border-success", // Dark mode
-    "[&:hover:not(:disabled)]:bg-success/10", // On hover and not disabled
-  ];
-  const outlineWarning = [
-    "border-warning text-warning", // Default
-    "dark:border-warning", // Dark mode
-    "[&:hover:not(:disabled)]:bg-warning/10", // On hover and not disabled
-  ];
-  const outlinePending = [
-    "border-pending text-pending", // Default
-    "dark:border-pending", // Dark mode
-    "[&:hover:not(:disabled)]:bg-pending/10", // On hover and not disabled
-  ];
-  const outlineDanger = [
-    "border-danger text-danger", // Default
-    "dark:border-danger", // Dark mode
-    "[&:hover:not(:disabled)]:bg-danger/10", // On hover and not disabled
-  ];
-  const outlineDark = [
-    "border-dark text-dark", // Default
-    "dark:border-darkmode-800 dark:text-slate-300", // Dark mode
-    "[&:hover:not(:disabled)]:bg-darkmode-800/30", // On hover and not disabled
-    "[&:hover:not(:disabled)]:dark:bg-opacity-30", // On hover and not disabled in dark mode
-  ];
-
-  // Soft Color
-  const softPrimary = [
-    "bg-primary border-primary bg-opacity-20 border-opacity-5 text-primary", // Default
-    "dark:border-opacity-100 dark:bg-opacity-20 dark:border-primary", // Dark mode
-    "[&:hover:not(:disabled)]:bg-opacity-10 [&:hover:not(:disabled)]:border-opacity-10", // On hover and not disabled
-    "[&:hover:not(:disabled)]:dark:border-opacity-60", // On hover and not disabled in dark mode
-  ];
-  const softSecondary = [
-    "bg-slate-300 border-secondary bg-opacity-20 text-slate-500", // Default
-    "dark:bg-darkmode-100/20 dark:border-darkmode-100/30 dark:text-slate-300", // Dark mode
-    "[&:hover:not(:disabled)]:bg-opacity-10", // On hover and not disabled
-    "[&:hover:not(:disabled)]:dark:bg-darkmode-100/10 [&:hover:not(:disabled)]:dark:border-darkmode-100/20", // On hover and not disabled in dark mode
-  ];
-  const softSuccess = [
-    "bg-success border-success bg-opacity-20 border-opacity-5 text-success", // Default
-    "dark:border-success dark:border-opacity-20", // Dark mode
-    "[&:hover:not(:disabled)]:bg-opacity-10 [&:hover:not(:disabled)]:border-opacity-10", // On hover and not disabled
-  ];
-  const softWarning = [
-    "bg-warning border-warning bg-opacity-20 border-opacity-5 text-warning", // Default
-    "dark:border-warning dark:border-opacity-20", // Dark mode
-    "[&:hover:not(:disabled)]:bg-opacity-10 [&:hover:not(:disabled)]:border-opacity-10", // On hover and not disabled
-  ];
-  const softPending = [
-    "bg-pending border-pending bg-opacity-20 border-opacity-5 text-pending", // Default
-    "dark:border-pending dark:border-opacity-20", // Dark mode
-    "[&:hover:not(:disabled)]:bg-opacity-10 [&:hover:not(:disabled)]:border-opacity-10", // On hover and not disabled
-  ];
-  const softDanger = [
-    "bg-danger border-danger bg-opacity-20 border-opacity-5 text-danger", // Default
-    "dark:border-danger dark:border-opacity-20", // Dark mode
-    "[&:hover:not(:disabled)]:bg-opacity-10 [&:hover:not(:disabled)]:border-opacity-10", // On hover and not disabled
-  ];
-  const softDark = [
-    "bg-dark border-dark bg-opacity-20 border-opacity-5 text-dark", // Default
-    "dark:bg-darkmode-800/30 dark:border-darkmode-800/60 dark:text-slate-300", // Dark mode
-    "[&:hover:not(:disabled)]:bg-opacity-10 [&:hover:not(:disabled)]:border-opacity-10", // On hover and not disabled
-    "[&:hover:not(:disabled)]:dark:bg-darkmode-800/50 [&:hover:not(:disabled)]:dark:border-darkmode-800", // On hover and not disabled in dark mode
-  ];
-
   return (
     <Component
       {...props}
@@ -236,24 +103,6 @@ function ButtonComponent<C extends React.ElementType>({
         variant == "pending" && pending,
         variant == "danger" && danger,
         variant == "dark" && dark,
-        variant == "outline-primary" && outlinePrimary,
-        variant == "outline-secondary" && outlineSecondary,
-        variant == "outline-success" && outlineSuccess,
-        variant == "outline-warning" && outlineWarning,
-        variant == "outline-pending" && outlinePending,
-        variant == "outline-danger" && outlineDanger,
-        variant == "outline-dark" && outlineDark,
-        variant == "soft-primary" && softPrimary,
-        variant == "soft-secondary" && softSecondary,
-        variant == "soft-success" && softSuccess,
-        variant == "soft-warning" && softWarning,
-        variant == "soft-pending" && softPending,
-        variant == "soft-danger" && softDanger,
-        variant == "soft-dark" && softDark,
-        variant == "facebook" && facebook,
-        variant == "twitter" && twitter,
-        variant == "instagram" && instagram,
-        variant == "linkedin" && linkedin,
         rounded && "rounded-full",
         elevated && "shadow-md",
         props.className,

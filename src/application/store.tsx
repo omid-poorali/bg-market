@@ -30,7 +30,7 @@ export function StoreProvider({ children }: PropsType) {
 
         const setCoins = (coins: Store["coins"]) => setState(prevState => ({ ...prevState, coins }));
 
-        const socket = new WebSocket(process.env.WS ?? "")
+        const socket = new WebSocket(import.meta.env.VITE_WS ?? "")
 
         socket.onmessage = (event) => {
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import * as Models from 'models';
 
-type Store = {
+export type Store = {
     darkMode: boolean;
     coins: [string, Models.Coin][];
 };

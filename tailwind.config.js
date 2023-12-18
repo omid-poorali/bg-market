@@ -77,5 +77,5 @@ export default {
     extend: {
       boxShadow: ["dark"],
     },
-  },
+  }
 };

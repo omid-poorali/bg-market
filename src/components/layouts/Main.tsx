@@ -4,7 +4,7 @@ import { DarkModeSwitch } from 'components';
 export function Main() {
   return (
     <>
-      <main>
+      <main className='p-2 md:p-8'>
         <Outlet />
       </main>
       <DarkModeSwitch />

@@ -5,6 +5,7 @@ import { useDebounce } from "hooks";
 import { Pagination } from "components";
 import { HomeTable } from "./Table";
 import { Filter } from "./Filter";
+import { Loading } from "application/views";
 
 const pageSize = 15;
 
@@ -38,16 +39,23 @@ export function Home() {
         <p data-test="p1" className="text-xl font-semibold">BG Market Watch</p>
         <p data-test="p2" className="darrk:text-[#ffffff66] font-normal text-base opacity-60">Find promising coins and great opportunities! </p>
       </div>
-      {/* desktop table */}
-      <HomeTable className="hidden md:table" data={currentTableData} />
-      {/* mobile table */}
-      <HomeTable className="md:hidden" data={filteredData} />
-      <Pagination
-        className="hidden md:flex mb-4"
-        currentPage={currentPage}
-        totalCount={filteredData.length}
-        pageSize={pageSize}
-        onPageChange={handelPageChange} />
+      {filteredData.length === 0 ? (
+        <Loading />
+      ) : (
+        <>
+          {/* desktop table */}
+          <HomeTable className="hidden md:table" data={currentTableData} />
+          {/* mobile table */}
+          <HomeTable className="md:hidden" data={filteredData} />
+          <Pagination
+            className="hidden md:flex mb-4"
+            currentPage={currentPage}
+            totalCount={filteredData.length}
+            pageSize={pageSize}
+            onPageChange={handelPageChange} />
+        </>
+      )
+      }
     </>
   );
 }

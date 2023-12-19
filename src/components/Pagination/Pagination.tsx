@@ -72,6 +72,7 @@ export const Pagination = React.forwardRef((props: PropsType, forwardedRef: Reac
 
       <li className={classes.li}>
         <Button
+          data-test="pagination-left"
           onClick={onPrevious}
           as="div"
           className={twMerge([
@@ -92,6 +93,7 @@ export const Pagination = React.forwardRef((props: PropsType, forwardedRef: Reac
         return (
           <li className={classes.li}>
             <Button
+              data-test={`pagination-${pageNumber}`}
               //@ts-expect-error it will return another item (above) that is not clickable if pageNumber was DOTS
               onClick={() => onPageChange?.(pageNumber)}
               as="div"
@@ -108,6 +110,7 @@ export const Pagination = React.forwardRef((props: PropsType, forwardedRef: Reac
 
       <li className={classes.li}>
         <Button
+          data-test="pagination-right"
           onClick={onNext}
           as="div"
           className={twMerge([

@@ -51,7 +51,7 @@ export const HomeTable = (props: PropsType) => {
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-                {React.Children.toArray(data.map(([key, coin]) => (
+                {React.Children.toArray(data.map(([key, coin], index) => (
                     <Table.Tr>
                         <Table.Td className={classes.td}>
                             <div className="w-40 flex justify-end items-center py-4">
@@ -59,7 +59,7 @@ export const HomeTable = (props: PropsType) => {
                                     <Icon fill="currentColor" color="currentColor" icon="Star" />
                                     <img className="ml-1 w-6 h-6" alt="" src={`https://api.bgcrypto.io/logo/${key}.png`} />
                                 </div>
-                                <div className="ml-1 flex-grow">{coin.symbol.substring(0, coin.symbol.indexOf("/USDT:USDT"))}</div>
+                                <div data-test={`coin-symbol-${index}`} className="ml-1 flex-grow">{coin.symbol.substring(0, coin.symbol.indexOf("/USDT:USDT"))}</div>
                             </div>
                         </Table.Td>
                         <Table.Td className={classes.td}>

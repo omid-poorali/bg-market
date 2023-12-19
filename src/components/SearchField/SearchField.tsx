@@ -27,7 +27,7 @@ export const SearchField = React.forwardRef((props: PropsType, forwardedRef: Rea
 	};
 
 	return (
-		<div data-testid="root" style={style} className={classes.root}>
+		<div style={style} className={classes.root}>
 			<span>{startAdornment ?? <SearchIcon />}</span>
 			<input
 				className={classes.input}

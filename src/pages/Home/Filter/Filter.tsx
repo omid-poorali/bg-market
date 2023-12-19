@@ -38,7 +38,7 @@ export const Filter = (props: PropsType) => {
 
     return (
         <div className={classes.root} {...rest}>
-            <SearchField fullWidth className="mb-8" defaultValue={query} onChange={handleQueryChange} />
+            <SearchField data-test="sf1" fullWidth className="mb-8" defaultValue={query} onChange={handleQueryChange} />
             <div className="flex flex-col md:justify-between md:items-center md:flex-row">
                 <TabMenu value={0} options={tabs} />
                 <Checkbox label="Available for Trading" />

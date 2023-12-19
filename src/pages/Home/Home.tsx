@@ -35,8 +35,8 @@ export function Home() {
     <>
       <Filter query={query} updateSearchParam={updateSearchParam} />
       <div className="my-4">
-        <p className="text-xl font-semibold">BG Market Watch</p>
-        <p className="darrk:text-[#ffffff66] font-normal text-base opacity-60">Find promising coins and great opportunities! </p>
+        <p data-test="p1" className="text-xl font-semibold">BG Market Watch</p>
+        <p data-test="p2" className="darrk:text-[#ffffff66] font-normal text-base opacity-60">Find promising coins and great opportunities! </p>
       </div>
       {/* desktop table */}
       <HomeTable className="hidden md:table" data={currentTableData} />
